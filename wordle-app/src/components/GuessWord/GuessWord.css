@@ -1,0 +1,16 @@
+.guessWord {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.letter {
+    display: flex;
+	justify-content: center;
+	padding: 10px;
+	margin: 2px;
+	height: 25px;
+	width: 25px;
+	border-radius: 5px;
+    cursor: pointer;
+}
