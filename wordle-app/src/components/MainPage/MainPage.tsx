@@ -8,10 +8,6 @@ export const MainPage: React.FC = (): JSX.Element => {
     <>
       <h1>Słownikowo</h1>
       <GuessWord />
-      <GuessWord />
-      <GuessWord />
-      <GuessWord />
-      <GuessWord />
       <Keyboard />
     </>
   )
