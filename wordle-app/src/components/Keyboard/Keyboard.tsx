@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import '../Keyboard/Keyboard.scss'
 import { v4 as uuidv4 } from 'uuid';
 import { ThemeContext } from '../useContext/ThemeContext';
-import { ContextType } from '../DarkModeToggle/DarkModeToggle';
+import { DarkModeContextType } from '../DarkModeToggle/DarkModeToggle';
 import { UsedLettersType } from '../MainPage/MainPage';
 import { UsedLettersContext } from '../useContext/UsedLettersContext';
 
 export const Keyboard = () => {
     const alphabet: string = 'aąbcćdeęfghijklłmnńoóprsśtuwyzźż';
-    const { darkMode } = useContext<ContextType>(ThemeContext);
+    const { darkMode } = useContext<DarkModeContextType>(ThemeContext);
     const { usedLetters } = useContext<UsedLettersType>(UsedLettersContext);
     return (
         <div
