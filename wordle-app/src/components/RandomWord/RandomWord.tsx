@@ -18,6 +18,7 @@ export const RandomWord: React.FC<RandomWordProps> = ({
     return (<>
         {inputValue.map((inputValue, index: number) => {
             return <GuessWord
+                key={index}
                 randomWord={word.toString()}
                 autoFocus={focus === index}
                 setFocus={setFocus}
