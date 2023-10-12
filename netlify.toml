@@ -1,0 +1,8 @@
+[build]
+  command = "cd wordle-app && npm install && npm run build"
+  publish = "wordle-app/build"
+
+
+
+
+
