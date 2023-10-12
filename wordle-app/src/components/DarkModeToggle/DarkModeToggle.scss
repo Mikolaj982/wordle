@@ -1,0 +1,26 @@
+.sliderContainer {
+    right: 5px;
+    top: 7px;
+    position: absolute;
+    margin-top: 2px;
+    flex-direction: row-reverse;
+    display: flex;
+    align-items: center;
+    #slider {
+        width: 12px;
+        flex-direction: row-reverse;
+        display: flex;
+        margin: 0 15px 0 17px;
+    }
+    .moon {
+        font-size: 17px;
+        margin-right: 10px;
+    }
+    .sun {
+        font-size: 17px;
+    }
+}
+
+#sliderContainerDarkTheme {
+    color: white;
+}

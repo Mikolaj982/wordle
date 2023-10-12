@@ -1,0 +1,85 @@
+.gameInfoContainer {
+    padding: 10px 20px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 600px;
+    width: 600px;
+    background-color: rgb(164, 179, 179);
+    overflow: hidden;
+    border-radius: 7px;
+    border: solid 3px grey;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    div, p {
+        margin: 12px 0;
+    }
+
+    button {
+        font-weight: bold;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        border: none;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        background-color: black;
+        color: white;
+        padding: 6px;
+        &:hover {
+            background-color: grey;
+            color: black;
+            cursor: pointer;
+        }
+}
+
+    .exampleWord {
+        display: flex;
+        margin: 10px;
+        div {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            text-transform: uppercase;
+            border: 2px solid rgb(18, 18, 18);
+            margin: 0 5px;
+            height: 38px;
+            width: 38px;
+        }
+    }
+
+    .exampleWord:nth-of-type(1) {
+            div:nth-of-type(4) {
+                background-color: rgb(35, 190, 35);
+            }
+    }
+
+    .exampleWord:nth-of-type(2) {
+        div:nth-of-type(3) {
+            background-color: #ffa500;
+        }
+    }   
+
+    .exampleWord:nth-of-type(3) {
+        div:nth-of-type(1) {
+            background-color: rgb(58, 58, 60);
+        }
+    }
+
+    p:nth-last-of-type(1) {
+        font-weight: bold;
+    }
+}

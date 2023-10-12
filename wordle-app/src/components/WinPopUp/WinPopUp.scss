@@ -1,0 +1,88 @@
+.winPopUp {
+    background-color:rgb(140 241 113);;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    border: 3px solid rgb(51, 49, 49);
+    border-radius: 5px;
+    flex-direction: column;
+    display: flex;
+
+    h1 {
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 23px;
+    }
+
+    button {
+        border-radius: 5px;
+        border: 2px solid white;
+        padding: 8px;
+        align-self: center;
+        margin-bottom: 15px;
+        font-weight: 600;
+        background-color: #c1db7f;
+        &:hover {
+            background-color: #d7e761;
+            cursor: pointer;
+        }
+        &:active {
+            background-color: rgb(154, 168, 127);
+        }
+    }
+}
+.blurBackground {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 150px;
+    width: 2000px;
+    height: 2000px;
+    filter: blur(400px);
+    background-color: white;
+    transform: translate(-29%, -30%);
+    -webkit-filter: blur(400px);
+}
+
+#blurBackgroundDark {
+    background-color: #181818;
+}
+
+@media (min-width: 992px) {
+    .winPopUp {
+        h1 {
+            margin-bottom: 10px;
+        }
+    
+        p {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 23px;
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .winPopUp {
+        width: 500px;
+        h1 {
+            font-size: 50px;
+            margin-top: 33px;
+        }
+
+        p {
+            font-size: 26px;
+        }
+
+        button {
+            font-size: 20px;
+            margin: 15px 0 30px;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+#letter {
+	background-color: #181818;
+	color: rgb(243, 233, 233);
+}
+
+.guessWord {
+	display: flex;
+	justify-content: center;
+	.letter {
+		text-align: center;
+		font-weight: bold;
+		font-size: 20px;
+		display: flex;
+		justify-content: center;
+		margin: 1px;
+		height: 35px;
+		width: 35px;
+		border: solid grey 2px;
+	}
+}
+
+@media (min-width: 768px) {
+	.guessWord {
+		padding: 4px;
+		input {
+			height: 38px;
+			width: 38px;
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	.guessWord {
+		padding: 6px;
+		input {
+			 margin: 2px;
+			 font-size: 27px;
+		}
+	}
+}
+
+@media (min-width: 1200px) {
+	.guessWord {
+		input {
+			height: 45px;
+			width: 45px;
+			font-size: 34px;
+		}
+	}
+}

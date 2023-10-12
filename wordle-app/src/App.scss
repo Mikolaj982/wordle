@@ -1,0 +1,28 @@
+html {
+	overflow: hidden;
+}
+
+body {
+	margin: 0;
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#darkMode {
+	background-color: #181818;
+}
+
+html, #root, .App {
+	height: 100vh;
+}
+
+
+
+
+
+
+
