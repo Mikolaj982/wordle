@@ -7,7 +7,7 @@ import { Keyboard } from '../Keyboard/Keyboard';
 import { GameInfo } from '../GameInfo/GameInfo';
 import { DarkModeToggle } from '../DarkModeToggle/DarkModeToggle';
 import { ThemeContext } from '../useContext/ThemeContext';
-import { ContextType } from '../DarkModeToggle/DarkModeToggle';
+import { DarkModeContextType } from '../DarkModeToggle/DarkModeToggle';
 import { UsedLetterProvider } from '../useContext/UsedLettersContext';
 import HelpIcon from '@mui/icons-material/Help';
 
@@ -23,7 +23,7 @@ export const MainPage: React.FC = () => {
   const [isDataValid, setIsDataValid] = useState<boolean>(true);
   const [gameInfo, setGameInfo] = useState<boolean>(false);
   const inputValue: string[] = ['', '', '', '', ''];
-  const { darkMode } = useContext<ContextType>(ThemeContext)
+  const { darkMode } = useContext<DarkModeContextType>(ThemeContext)
 
   useEffect(() => {
     fetchAndSortWords();
