@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import '../WinPopUp/WinPopUp.scss'
 import PlayAgain from '../ReloadPage/PlayAgain';
 import { ThemeContext } from '../useContext/ThemeContext';
-import { ContextType } from '../DarkModeToggle/DarkModeToggle';
+import { DarkModeContextType } from '../DarkModeToggle/DarkModeToggle';
 
 interface WirOrLosePopUpProps {
     msg: string,
@@ -15,7 +15,7 @@ export const WinOrLosePopUp: React.FC<WirOrLosePopUpProps> = ({
     isWin,
     word
 }) => {
-    const { darkMode } = useContext<ContextType>(ThemeContext)
+    const { darkMode } = useContext<DarkModeContextType>(ThemeContext)
     return (<>
         <div className='blurBackground' id={darkMode ? 'blurBackgroundDark' : ''}></div>
         <div className='winPopUp' style={isWin ? {} : { backgroundColor: '#e95d5d' }}>
