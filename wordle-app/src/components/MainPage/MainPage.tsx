@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useContext } from 'react'
+import React, { useEffect, useState, useCallback, useContext, SetStateAction } from 'react'
 import './MainPage.scss';
 import { RandomWord } from '../RandomWord/RandomWord';
 import { WinOrLosePopUp } from '../WinPopUp/WinPopUp';
@@ -6,14 +6,15 @@ import { ErrorHandler } from '../ErrorHandler/ErrorHandler';
 import { Keyboard } from '../Keyboard/Keyboard';
 import { GameInfo } from '../GameInfo/GameInfo';
 import { DarkModeToggle } from '../DarkModeToggle/DarkModeToggle';
-import { ThemeContext } from '../useContext/ThemeContext';
+import { ThemeContext } from '../../contexts/ThemeContext';
 import { DarkModeContextType } from '../DarkModeToggle/DarkModeToggle';
-import { UsedLetterProvider } from '../useContext/UsedLettersContext';
+import { UsedLetterProvider } from '../../contexts/UsedLettersContext';
 import HelpIcon from '@mui/icons-material/Help';
+import { usedLetters } from '../../contexts/UsedLettersContext';
 
 export interface UsedLettersType {
-  usedLetters: string[],
-  handleUsedLetters: (newArray: string[]) => void,
+  usedLetters: usedLetters,
+  handleUsedLetters: (newArray: string[], guessWord: string[], randomWordArray: string[]) => void,
 }
 
 export const MainPage: React.FC = () => {
@@ -45,7 +46,7 @@ export const MainPage: React.FC = () => {
     try {
       const response = await fetch('../words.txt');
       const data = await response.text();
-      const wordsArray = data.split('\n').map(word => word.trim()).filter((word) => (word.length === 5 && !word.includes('q') ? word : null));
+      const wordsArray = data.split('\n').map(word => word.trim()).filter((word) => (word.length === 5 && !word.includes('q')));
       setSortedWords(wordsArray);
     } catch (error) {
       setIsDataValid(false);
@@ -62,12 +63,14 @@ export const MainPage: React.FC = () => {
 
   return (
     <>
-      <HelpIcon
-        className='helpIcon'
-        id={darkMode ? 'helpIconDarkTheme' : ''}
-        onClick={handleGameInfo}
-      />
-      <DarkModeToggle />
+      <div className='btnsContainer'>
+        <HelpIcon
+          className='helpIcon'
+          id={darkMode ? 'helpIconDarkTheme' : ''}
+          onClick={handleGameInfo}
+        />
+        <DarkModeToggle />
+      </div>
       <h1 className={darkMode ? 'darkTheme' : ''}>Słownikowo</h1>
       <UsedLetterProvider>
         <div className='wordsContainer'>

@@ -14,12 +14,12 @@ export const RandomWord: React.FC<RandomWordProps> = ({
 }) => {
     const [focus, setFocus] = useState<number>(0);
     const [isDisable, setIsDisable] = useState<boolean>(false);
-    console.log('Wylosowane słowo to:', word);
+    console.log('wylosowane słowo to', word)
     return (<>
         {inputValue.map((inputValue, index: number) => {
             return <GuessWord
                 key={index}
-                randomWord={word.toString()}
+                randomWord={word}
                 autoFocus={focus === index}
                 setFocus={setFocus}
                 isDisable={isDisable}

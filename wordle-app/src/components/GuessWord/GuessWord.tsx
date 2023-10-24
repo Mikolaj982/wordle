@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef, ChangeEvent, useContext } from 'react';
+import React, { useState, useEffect, useRef, ChangeEvent, useContext, useCallback } from 'react';
 import '../GuessWord/GuessWord.scss';
-import { ThemeContext } from '../useContext/ThemeContext';
+import { ThemeContext } from '../../contexts/ThemeContext';
 import { DarkModeContextType } from '../DarkModeToggle/DarkModeToggle';
 import { UsedLettersType } from '../MainPage/MainPage';
-import { UsedLettersContext } from '../useContext/UsedLettersContext';
+import { UsedLettersContext } from '../../contexts/UsedLettersContext';
+import _ from 'lodash';
 
 interface GuessWordProps {
   randomWord: string,
@@ -32,6 +33,7 @@ export const GuessWord: React.FC<GuessWordProps> = ({
   const separateUsedLetters = guessWord.filter((string, index) => guessWord.indexOf(string) === index);
   const { darkMode } = useContext<DarkModeContextType>(ThemeContext);
   const { handleUsedLetters } = useContext<UsedLettersType>(UsedLettersContext)
+  const [repeated, setRepeated] = useState<string[]>([]);
 
   useEffect(() => {
     if (autoFocus) {
@@ -51,11 +53,22 @@ export const GuessWord: React.FC<GuessWordProps> = ({
     };
   }, [attemptCounter]);
 
-  const handleInputChange = (index: number, event: ChangeEvent<HTMLInputElement>): void => {
+  const handleInputChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.toUpperCase();
-    const newGuessWord = [...guessWord];
-    newGuessWord[index] = value;
-    setGuessWord(newGuessWord);
+    if (value.length > 0) {
+      const newGuessWord = [...guessWord];
+      newGuessWord[index] = value;
+      setGuessWord(newGuessWord);
+      if (index < inputRefs.current.length - 1) {
+        inputRefs.current[index + 1]?.focus();
+      }
+    }
+    if (value.length === 0 && index >= 0) {
+      const newGuessWord = [...guessWord];
+      newGuessWord[index] = value;
+      setGuessWord(newGuessWord);
+      inputRefs.current[index - 1]?.focus();
+    }
   };
 
   const handleInputKeyUp = (index: number, event: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -73,7 +86,7 @@ export const GuessWord: React.FC<GuessWordProps> = ({
       setFocus((prev: number) => prev + 1);
       setDisableOneLine(true);
       compareAndHighlightArrays();
-      handleUsedLetters(separateUsedLetters);
+      handleUsedLetters(separateUsedLetters, guessWord, randomArray);
     }
   };
 
@@ -102,15 +115,13 @@ export const GuessWord: React.FC<GuessWordProps> = ({
       return color;
     });
 
-    const isWin = updatedColor.every((color: any) => color === '#23be23');
+    const isWin = updatedColor.every((color: string) => color === '#23be23');
     if (isWin) {
       const winColors = ['23be23', '23be23', '23be23', '23be23', '23be23'];
       setColor(winColors);
       setIsDisable(true);
-      console.log('wygrałeś!');
       handleWinInfo(true);
     } else if (attemptCounter === 4) {
-      console.log('przegrałeś!')
       handleWinInfo(false);
     }
     setColor(updatedColor);

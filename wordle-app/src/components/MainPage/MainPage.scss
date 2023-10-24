@@ -2,15 +2,18 @@
 	font-family: sans-serif;
 }
 
-#helpIconDarkTheme {
-	color: #fff;
-}
-
-.helpIcon {
-	position: absolute;
-	top: 9px;
-	left: 15px;
-	cursor: pointer;
+.btnsContainer{
+	margin-top: 10px;
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    top: 0;
+	.helpIcon {
+		margin-left: 12px;
+		cursor: pointer;
+	}
 }
 
 h1 {
@@ -21,6 +24,10 @@ h1 {
 }
 
 .darkTheme {
+	color: #fff;
+}
+
+#helpIconDarkTheme {
 	color: #fff;
 }
 
@@ -42,7 +49,7 @@ h1 {
 		margin-bottom: 22px;
 		margin-top: 35px;
 	}
-}
+} 
 
 @media (min-width: 1200px) {
 	h1 {

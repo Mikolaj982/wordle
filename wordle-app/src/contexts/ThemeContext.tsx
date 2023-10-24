@@ -12,7 +12,6 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     const [darkMode, setDarkMode] = useState(false);
 
     const toggleDarkMode = () => {
-        console.log('darkmode', darkMode)
         setDarkMode(prevMode => !prevMode);
     };
 

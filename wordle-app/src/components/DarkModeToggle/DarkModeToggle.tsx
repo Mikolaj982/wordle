@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { ThemeContext } from '../useContext/ThemeContext';
+import { ThemeContext } from '../../contexts/ThemeContext';
 import Slider from '@mui/material/Slider';
 import '../DarkModeToggle/DarkModeToggle.scss';
 import LightModeIcon from '@mui/icons-material/LightMode';

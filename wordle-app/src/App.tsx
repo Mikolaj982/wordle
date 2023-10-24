@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { MainPage } from './components/MainPage/MainPage';
 import './App.scss';
-import { ThemeContext } from './components/useContext/ThemeContext';
+import { ThemeContext } from './contexts/ThemeContext';
 import { DarkModeContextType } from './components/DarkModeToggle/DarkModeToggle';
 
 export const App = () => {
