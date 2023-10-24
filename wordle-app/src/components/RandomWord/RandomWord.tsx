@@ -14,7 +14,6 @@ export const RandomWord: React.FC<RandomWordProps> = ({
 }) => {
     const [focus, setFocus] = useState<number>(0);
     const [isDisable, setIsDisable] = useState<boolean>(false);
-    console.log('wylosowane słowo to', word)
     return (<>
         {inputValue.map((inputValue, index: number) => {
             return <GuessWord
