@@ -31,7 +31,7 @@ export const GuessWord: React.FC<GuessWordProps> = ({
   const coloredLetters = new Set();
   const separateUsedLetters = guessWord.filter((string, index) => guessWord.indexOf(string) === index);
   const { darkMode } = useContext<DarkModeContextType>(ThemeContext);
-  const { handleUsedLetters } = useContext<UsedLettersType>(UsedLettersContext)
+  const { handleUsedLetters } = useContext<UsedLettersType>(UsedLettersContext);
 
   useEffect(() => {
     if (autoFocus) {
@@ -78,13 +78,24 @@ export const GuessWord: React.FC<GuessWordProps> = ({
     }
   };
 
+  const isLastLine = (index: number): boolean => {
+    return index >= inputRefs.current.length - 5;
+  };
+
   const handleInputKeyPress = (index: number, event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      setFocus((prev: number) => prev + 1);
-      setDisableOneLine(true);
-      compareAndHighlightArrays();
-      handleUsedLetters(separateUsedLetters, guessWord, randomArray);
+      if (index < inputRefs.current.length - 1) {
+        setFocus((prev: number) => prev + 1);
+      } else if (index === inputRefs.current.length - 1 && !isLastLine(index)) {
+        setFocus((prev: number) => prev + 1);
+        setDisableOneLine(true);
+      } else if (index === inputRefs.current.length - 1 && isLastLine(index)) {
+        setFocus((prev: number) => prev + 1);
+        setDisableOneLine(true);
+        compareAndHighlightArrays();
+        handleUsedLetters(separateUsedLetters, guessWord, randomArray);
+      }
     }
   };
 
