@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import '../Keyboard/Keyboard.scss'
 import { v4 as uuidv4 } from 'uuid';
 import { ThemeContext } from '../../contexts/ThemeContext';

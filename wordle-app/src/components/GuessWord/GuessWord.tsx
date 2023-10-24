@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef, ChangeEvent, useContext, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import '../GuessWord/GuessWord.scss';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { DarkModeContextType } from '../DarkModeToggle/DarkModeToggle';
 import { UsedLettersType } from '../MainPage/MainPage';
 import { UsedLettersContext } from '../../contexts/UsedLettersContext';
-import _ from 'lodash';
 
 interface GuessWordProps {
   randomWord: string,
@@ -33,7 +32,6 @@ export const GuessWord: React.FC<GuessWordProps> = ({
   const separateUsedLetters = guessWord.filter((string, index) => guessWord.indexOf(string) === index);
   const { darkMode } = useContext<DarkModeContextType>(ThemeContext);
   const { handleUsedLetters } = useContext<UsedLettersType>(UsedLettersContext)
-  const [repeated, setRepeated] = useState<string[]>([]);
 
   useEffect(() => {
     if (autoFocus) {

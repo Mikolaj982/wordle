@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useContext, SetStateAction } from 'react'
+import React, { useEffect, useState, useCallback, useContext } from 'react'
 import './MainPage.scss';
 import { RandomWord } from '../RandomWord/RandomWord';
 import { WinOrLosePopUp } from '../WinPopUp/WinPopUp';
