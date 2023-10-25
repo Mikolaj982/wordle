@@ -32,7 +32,7 @@ export const GuessWord: React.FC<GuessWordProps> = ({
   const separateUsedLetters = guessWord.filter((string, index) => guessWord.indexOf(string) === index);
   const { darkMode } = useContext<DarkModeContextType>(ThemeContext);
   const { handleUsedLetters } = useContext<UsedLettersType>(UsedLettersContext);
-
+  console.log(inputRefs)
   useEffect(() => {
     if (autoFocus) {
       inputRefs.current[0]?.focus();
@@ -93,8 +93,11 @@ export const GuessWord: React.FC<GuessWordProps> = ({
       } else if (index === inputRefs.current.length - 1 && isLastLine(index)) {
         setFocus((prev: number) => prev + 1);
         setDisableOneLine(true);
-        compareAndHighlightArrays();
-        handleUsedLetters(separateUsedLetters, guessWord, randomArray);
+
+        guessWord.forEach(() => {
+          compareAndHighlightArrays();
+          handleUsedLetters(separateUsedLetters, guessWord, randomArray);
+        });
       }
     }
   };
