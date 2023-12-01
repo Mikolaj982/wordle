@@ -45,9 +45,9 @@ export const GuessWord: React.FC<GuessWordProps> = ({
         setAttemptCounter((prev) => prev + 1);
       }
     };
-    window.addEventListener('keydown', handleKeyPress);
+    window.addEventListener('keyup', handleKeyPress);
     return () => {
-      window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener('keyup', handleKeyPress);
     };
   }, [attemptCounter]);
 
