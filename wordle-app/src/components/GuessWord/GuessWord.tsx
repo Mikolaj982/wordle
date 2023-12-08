@@ -85,10 +85,6 @@ export const GuessWord: React.FC<GuessWordProps> = ({
     }
   };
 
-  const isLastLine = (index: number): boolean => {
-    return index >= inputRefs.current.length - 5;
-  };
-
   const handleInputKeyPress = (index: number, event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter') {
         event.preventDefault();
