@@ -32,7 +32,13 @@ export const GuessWord: React.FC<GuessWordProps> = ({
   const separateUsedLetters = guessWord.filter((string, index) => guessWord.indexOf(string) === index);
   const { darkMode } = useContext<DarkModeContextType>(ThemeContext);
   const { handleUsedLetters } = useContext<UsedLettersType>(UsedLettersContext);
-  console.log(inputRefs)
+
+  // console.log('inputRefs:', inputRefs);
+  // console.log('inputRefs.current.length:',inputRefs.current.length);
+  // console.log('color:',color);
+  console.log('attemptCounter:', attemptCounter);
+  console.log('randomWord:',randomArray)
+
   useEffect(() => {
     if (autoFocus) {
       inputRefs.current[0]?.focus();
@@ -45,9 +51,9 @@ export const GuessWord: React.FC<GuessWordProps> = ({
         setAttemptCounter((prev) => prev + 1);
       }
     };
-    window.addEventListener('keyup', handleKeyPress);
+    window.addEventListener('keydown', handleKeyPress);
     return () => {
-      window.removeEventListener('keyup', handleKeyPress);
+      window.removeEventListener('keydown', handleKeyPress);
     };
   }, [attemptCounter]);
 
@@ -61,6 +67,7 @@ export const GuessWord: React.FC<GuessWordProps> = ({
         inputRefs.current[index + 1]?.focus();
       }
     }
+
     if (value.length === 0 && index >= 0) {
       const newGuessWord = [...guessWord];
       newGuessWord[index] = value;
@@ -84,22 +91,12 @@ export const GuessWord: React.FC<GuessWordProps> = ({
 
   const handleInputKeyPress = (index: number, event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter') {
-      event.preventDefault();
-      if (index < inputRefs.current.length - 1) {
-        setFocus((prev: number) => prev + 1);
-      } else if (index === inputRefs.current.length - 1 && !isLastLine(index)) {
-        setFocus((prev: number) => prev + 1);
+        event.preventDefault();
+        setFocus(prev => prev + 1);
         setDisableOneLine(true);
-      } else if (index === inputRefs.current.length - 1 && isLastLine(index)) {
-        setFocus((prev: number) => prev + 1);
-        setDisableOneLine(true);
-
-        guessWord.forEach(() => {
-          compareAndHighlightArrays();
-          handleUsedLetters(separateUsedLetters, guessWord, randomArray);
-        });
+        compareAndHighlightArrays();
+        handleUsedLetters(separateUsedLetters, guessWord, randomArray);
       }
-    }
   };
 
   const compareAndHighlightArrays = () => {
