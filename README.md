@@ -5,6 +5,7 @@ Game inspired by Wordle.
 Technologies: HTML5, SCSS, ReactJS, TypeScript.
 
 Demo: https://transcendent-cuchufli-744b09.netlify.app/
+
 --------------------------------------------------------------------------------------------------------------------
 🇵🇱'Słownikowo', gra inspirowana Wordle oraz Literalnie.
 
