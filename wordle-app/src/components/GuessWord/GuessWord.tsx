@@ -37,7 +37,7 @@ export const GuessWord: React.FC<GuessWordProps> = ({
   // console.log('inputRefs.current.length:',inputRefs.current.length);
   // console.log('color:',color);
   console.log('attemptCounter:', attemptCounter);
-  console.log('randomWord:',randomArray)
+  console.log('randomWord:', randomArray)
 
   useEffect(() => {
     if (autoFocus) {
@@ -77,22 +77,29 @@ export const GuessWord: React.FC<GuessWordProps> = ({
   };
 
   const handleInputKeyUp = (index: number, event: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (event.key === 'Backspace' && index > 0 && event.currentTarget.value.length === 0) {
-      event.preventDefault();
-      inputRefs.current[index - 1]?.focus();
-    } else if (event.key !== 'Backspace' && index < inputRefs.current.length - 1 && event.currentTarget.value.length > 0) {
-      inputRefs.current[index + 1]?.focus();
+    const isBackspaceOrDelete = event.key === 'Backspace' || event.key === 'Delete' ||
+      event.keyCode === 8 || event.keyCode === 46 ||
+      event.which === 8 || event.which === 46 ||
+      event.code === 'Backspace' || event.code === 'Delete';
+
+    if (isBackspaceOrDelete) {
+      if (index > 0 && event.currentTarget.value.length === 0) {
+        event.preventDefault();
+        inputRefs.current[index - 1]?.focus();
+      } else if (index < inputRefs.current.length - 1 && event.currentTarget.value.length > 0) {
+        inputRefs.current[index + 1]?.focus();
+      }
     }
   };
 
   const handleInputKeyPress = (index: number, event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter') {
-        event.preventDefault();
-        setFocus(prev => prev + 1);
-        setDisableOneLine(true);
-        compareAndHighlightArrays();
-        handleUsedLetters(separateUsedLetters, guessWord, randomArray);
-      }
+      event.preventDefault();
+      setFocus(prev => prev + 1);
+      setDisableOneLine(true);
+      compareAndHighlightArrays();
+      handleUsedLetters(separateUsedLetters, guessWord, randomArray);
+    }
   };
 
   const compareAndHighlightArrays = () => {
