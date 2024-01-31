@@ -77,18 +77,13 @@ export const GuessWord: React.FC<GuessWordProps> = ({
   };
 
   const handleInputKeyUp = (index: number, event: React.KeyboardEvent<HTMLInputElement>): void => {
-    const isBackspaceOrDelete = event.key === 'Backspace' || event.key === 'Delete' ||
-      event.keyCode === 8 || event.keyCode === 46 ||
-      event.which === 8 || event.which === 46 ||
-      event.code === 'Backspace' || event.code === 'Delete';
-
-    if (isBackspaceOrDelete) {
-      if (index > 0 && event.currentTarget.value.length === 0) {
-        event.preventDefault();
-        inputRefs.current[index - 1]?.focus();
-      } else if (index < inputRefs.current.length - 1 && event.currentTarget.value.length > 0) {
-        inputRefs.current[index + 1]?.focus();
-      }
+    const isBackspace = event.key === 'Backspace' || event.keyCode === 8 || event.which === 8 || event.code === 'Backspace';
+    const isDelete = event.key === 'Delete' || event.keyCode === 46 || event.which === 46 || event.code === 'Delete';
+    if (isBackspace || isDelete && index > 0 && event.currentTarget.value.length === 0) {
+      event.preventDefault();
+      inputRefs.current[index - 1]?.focus();
+    } else if (event.key !== isBackspace || isDelete && index < inputRefs.current.length - 1 && event.currentTarget.value.length > 0) {
+      inputRefs.current[index + 1]?.focus();
     }
   };
 
@@ -150,13 +145,13 @@ export const GuessWord: React.FC<GuessWordProps> = ({
           id={darkMode ? 'letter' : ''}
           value={letter}
           onChange={(event) => handleInputChange(index, event)}
-          onKeyDown={(event) => handleInputKeyPress(index, event)}
-          onKeyUp={(event) => handleInputKeyUp(index, event)}
-          style={{ backgroundColor: color[index] }}
-          disabled={isDisable || disableOneLine}
-          minLength={1}
-          maxLength={1}
-          required
+          onKeyDown={(event) => handleInputKeyPress(index, event); handleInputKeyUp(index, event)}
+          // onKeyUp={(event) => handleInputKeyUp(index, event)}
+      style={{ backgroundColor: color[index] }}
+      disabled={isDisable || disableOneLine}
+      minLength={1}
+      maxLength={1}
+      required
         />
       ))}
     </div>
