@@ -145,13 +145,17 @@ export const GuessWord: React.FC<GuessWordProps> = ({
           id={darkMode ? 'letter' : ''}
           value={letter}
           onChange={(event) => handleInputChange(index, event)}
-          onKeyDown={(event) => handleInputKeyPress(index, event); handleInputKeyUp(index, event)}
+          onKeyDown={(event) => {
+            handleInputKeyPress(index, event);
+            handleInputKeyUp(index, event)
+          }
+          }
           // onKeyUp={(event) => handleInputKeyUp(index, event)}
-      style={{ backgroundColor: color[index] }}
-      disabled={isDisable || disableOneLine}
-      minLength={1}
-      maxLength={1}
-      required
+          style={{ backgroundColor: color[index] }}
+          disabled={isDisable || disableOneLine}
+          minLength={1}
+          maxLength={1}
+          required
         />
       ))}
     </div>
