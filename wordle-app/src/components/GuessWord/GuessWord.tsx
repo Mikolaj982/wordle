@@ -79,7 +79,7 @@ export const GuessWord: React.FC<GuessWordProps> = ({
   const handleInputKeyUp = (index: number, event: React.KeyboardEvent<HTMLInputElement>): void => {
     const isBackspace = event.key === 'Backspace' || event.keyCode === 8 || event.which === 8 || event.code === 'Backspace';
     const isDelete = event.key === 'Delete' || event.keyCode === 46 || event.which === 46 || event.code === 'Delete';
-    if (isBackspace || isDelete && index > 0 && event.currentTarget.value.length === 0) {
+    if ((isBackspace || isDelete) && index > 0 && event.currentTarget.value.length === 0) {
       event.preventDefault();
       inputRefs.current[index - 1]?.focus();
     } else {
