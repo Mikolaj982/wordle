@@ -3,7 +3,7 @@
 	color: rgb(243, 233, 233);
 }
  
-.guessWord {
+form {
 	display: flex;
 	justify-content: center;
 	.letter {
@@ -20,7 +20,7 @@
 }
 
 @media (min-width: 768px) {
-	.guessWord {
+	form {
 		padding: 4px;
 		input {
 			height: 38px;
@@ -30,7 +30,7 @@
 }
 
 @media (min-width: 992px) {
-	.guessWord {
+	form {
 		padding: 6px;
 		input {
 			 margin: 2px;
@@ -40,7 +40,7 @@
 }
 
 @media (min-width: 1200px) {
-	.guessWord {
+	form {
 		input {
 			height: 45px;
 			width: 45px;
