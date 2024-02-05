@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef, useContext, FormEvent } from 'react';
 import '../GuessWord/GuessWord.scss';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { DarkModeContextType } from '../DarkModeToggle/DarkModeToggle';
@@ -134,7 +134,7 @@ export const GuessWord: React.FC<GuessWordProps> = ({
 
   return (
     <div className='guessWord'>
-      <form onSubmit={(event) => handleInputKeyPress(event)}>
+      <form onSubmit={(event: FormEvent<HTMLFormElement>) => handleInputKeyPress(event)}>
         {guessWord.map((letter, index) => (
           <input
             key={index}
@@ -145,7 +145,11 @@ export const GuessWord: React.FC<GuessWordProps> = ({
             value={letter}
             onChange={(event) => handleInputChange(index, event)}
             onKeyDown={(event) => {
-              handleInputKeyUp(index, event)
+              handleInputKeyUp(index, event);
+              if (event.key === 'Enter') {
+                event.preventDefault();
+                handleInputKeyPress(event as any);
+              }
             }
             }
             // onKeyUp={(event) => handleInputKeyUp(index, event)}
