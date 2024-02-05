@@ -80,19 +80,17 @@ export const GuessWord: React.FC<GuessWordProps> = ({
     if (event.key === 'Backspace' && index > 0 && event.currentTarget.value.length === 0) {
       event.preventDefault();
       inputRefs.current[index - 1]?.focus();
-    } else if (event.key !== 'Backspace' && index < inputRefs.current.length - 1 && event.currentTarget.value.length > 0) {
+    } else if (event.key !== 'Backspace' && index < inputRefs.current.length - 1 && event.currentTarget.value.length >= 0) {
       inputRefs.current[index + 1]?.focus();
     }
   };
 
   const handleInputKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
-
     event.preventDefault();
     setFocus(prev => prev + 1);
     setDisableOneLine(true);
     compareAndHighlightArrays();
     handleUsedLetters(separateUsedLetters, guessWord, randomArray);
-
   };
 
   const compareAndHighlightArrays = () => {
@@ -152,7 +150,6 @@ export const GuessWord: React.FC<GuessWordProps> = ({
               }
             }
             }
-            // onKeyUp={(event) => handleInputKeyUp(index, event)}
             style={{ backgroundColor: color[index] }}
             disabled={isDisable || disableOneLine}
             minLength={1}
