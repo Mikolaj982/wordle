@@ -77,10 +77,26 @@ export const GuessWord: React.FC<GuessWordProps> = ({
   };
 
   const handleInputKeyUp = (index: number, event: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (event.key === 'Backspace' && index > 0 && event.currentTarget.value.length === 0) {
+    //   if (event.key === 'Backspace' && index > 0 && event.currentTarget.value.length === 0) {
+    //     event.preventDefault();
+    //     inputRefs.current[index - 1]?.focus();
+    //   } else if (event.key !== 'Backspace' && index < inputRefs.current.length - 1 && event.currentTarget.value.length = 0) {
+    //     inputRefs.current[index + 1]?.focus();
+    //   }
+    // };
+    const isBackspace = event.key === 'Backspace';
+    const isEmpty = event.currentTarget.value.length === 0;
+
+    if (isBackspace && index > 0 && isEmpty) {
       event.preventDefault();
       inputRefs.current[index - 1]?.focus();
-    } else if (event.key !== 'Backspace' && index < inputRefs.current.length - 1 && event.currentTarget.value.length >= 0) {
+    } else if (isBackspace && index > 0 && !isEmpty) {
+      inputRefs.current[index - 1]?.focus();
+      inputRefs.current[index - 1]?.setSelectionRange(
+        inputRefs.current[index - 1]?.value.length,
+        inputRefs.current[index - 1]?.value.length
+      );
+    } else if (!isBackspace && index < inputRefs.current.length - 1 && !isEmpty) {
       inputRefs.current[index + 1]?.focus();
     }
   };
