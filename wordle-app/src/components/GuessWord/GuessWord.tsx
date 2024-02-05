@@ -86,14 +86,20 @@ export const GuessWord: React.FC<GuessWordProps> = ({
     // };
     const isBackspace = event.key === 'Backspace';
     const isEmpty = event.currentTarget.value.length === 0;
-
     if (isBackspace && index > 0 && isEmpty) {
       event.preventDefault();
-      inputRefs.current[index - 1]?.focus();
-    } else if (isBackspace && index > 0 && !isEmpty) {
       const prevInputRef = inputRefs.current[index - 1];
       prevInputRef?.focus();
+      if (prevInputRef) {
+        prevInputRef.setSelectionRange(prevInputRef.value.length, prevInputRef.value.length);
+      }
+    } else if (isBackspace && index > 0 && !isEmpty) {
+      const currentValue = event.currentTarget.value;
+      const newValue = currentValue.substring(0, currentValue.length - 1);
+      event.currentTarget.value = newValue;
 
+      const prevInputRef = inputRefs.current[index - 1];
+      prevInputRef?.focus();
       if (prevInputRef) {
         prevInputRef.setSelectionRange(prevInputRef.value.length, prevInputRef.value.length);
       }
