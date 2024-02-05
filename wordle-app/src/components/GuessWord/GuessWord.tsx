@@ -138,7 +138,7 @@ export const GuessWord: React.FC<GuessWordProps> = ({
         <input
           key={index}
           ref={(ref) => (inputRefs.current[index] = ref)}
-          type='text'
+          type='submit'
           className='letter'
           id={darkMode ? 'letter' : ''}
           value={letter}
