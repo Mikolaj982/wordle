@@ -134,7 +134,7 @@ export const GuessWord: React.FC<GuessWordProps> = ({
 
   return (
     <div className='guessWord'>
-      <form onSubmit={(event: FormEvent<HTMLFormElement>) => handleInputKeyPress(event)}>
+      <form onSubmit={(event: any) => handleInputKeyPress(event)}>
         {guessWord.map((letter, index) => (
           <input
             key={index}
