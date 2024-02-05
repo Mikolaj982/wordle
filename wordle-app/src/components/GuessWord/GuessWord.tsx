@@ -85,14 +85,14 @@ export const GuessWord: React.FC<GuessWordProps> = ({
     }
   };
 
-  const handleInputKeyPress = (index: number, event: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      setFocus(prev => prev + 1);
-      setDisableOneLine(true);
-      compareAndHighlightArrays();
-      handleUsedLetters(separateUsedLetters, guessWord, randomArray);
-    }
+  const handleInputKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+
+    event.preventDefault();
+    setFocus(prev => prev + 1);
+    setDisableOneLine(true);
+    compareAndHighlightArrays();
+    handleUsedLetters(separateUsedLetters, guessWord, randomArray);
+
   };
 
   const compareAndHighlightArrays = () => {
@@ -134,28 +134,29 @@ export const GuessWord: React.FC<GuessWordProps> = ({
 
   return (
     <div className='guessWord'>
-      {guessWord.map((letter, index) => (
-        <input
-          key={index}
-          ref={(ref) => (inputRefs.current[index] = ref)}
-          type='submit'
-          className='letter'
-          id={darkMode ? 'letter' : ''}
-          value={letter}
-          onChange={(event) => handleInputChange(index, event)}
-          onKeyDown={(event) => {
-            handleInputKeyPress(index, event);
-            handleInputKeyUp(index, event)
-          }
-          }
-          // onKeyUp={(event) => handleInputKeyUp(index, event)}
-          style={{ backgroundColor: color[index] }}
-          disabled={isDisable || disableOneLine}
-          minLength={1}
-          maxLength={1}
-          required
-        />
-      ))}
+      <form onsubmit={(event) => handleInputKeyPress(event)}>
+        {guessWord.map((letter, index) => (
+          <input
+            key={index}
+            ref={(ref) => (inputRefs.current[index] = ref)}
+            type='text'
+            className='letter'
+            id={darkMode ? 'letter' : ''}
+            value={letter}
+            onChange={(event) => handleInputChange(index, event)}
+            onKeyDown={(event) => {
+              handleInputKeyUp(index, event)
+            }
+            }
+            // onKeyUp={(event) => handleInputKeyUp(index, event)}
+            style={{ backgroundColor: color[index] }}
+            disabled={isDisable || disableOneLine}
+            minLength={1}
+            maxLength={1}
+            required
+          />
+        ))}
+      </form>
     </div>
   );
 };
