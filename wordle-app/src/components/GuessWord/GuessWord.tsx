@@ -90,18 +90,13 @@ export const GuessWord: React.FC<GuessWordProps> = ({
       event.preventDefault();
       const prevInputRef = inputRefs.current[index - 1];
       prevInputRef?.focus();
-      if (prevInputRef) {
-        prevInputRef.setSelectionRange(prevInputRef.value.length, prevInputRef.value.length);
-      }
-    } else if (isBackspace && index > 0 && !isEmpty) {
-      const currentValue = event.currentTarget.value;
-      const newValue = currentValue.substring(0, currentValue.length - 1);
-      event.currentTarget.value = newValue;
 
+    } else if (isBackspace && index > 0 && !isEmpty) {
+      event.currentTarget.value = '';
       const prevInputRef = inputRefs.current[index - 1];
       prevInputRef?.focus();
       if (prevInputRef) {
-        prevInputRef.setSelectionRange(prevInputRef.value.length, prevInputRef.value.length);
+        prevInputRef?.focus();
       }
     } else if (!isBackspace && index < inputRefs.current.length - 1 && !isEmpty) {
       inputRefs.current[index + 1]?.focus();
