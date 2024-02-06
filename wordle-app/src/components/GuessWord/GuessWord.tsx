@@ -99,79 +99,80 @@ export const GuessWord: React.FC<GuessWordProps> = ({
         inputRefs.current[index + 1]?.focus();
       }
     };
+  }
 
-    const handleInputKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
-      event.preventDefault();
-      setFocus(prev => prev + 1);
-      setDisableOneLine(true);
-      compareAndHighlightArrays();
-      handleUsedLetters(separateUsedLetters, guessWord, randomArray);
-    };
-
-    const compareAndHighlightArrays = () => {
-      const updatedColor = guessWord.map((letter, index) => {
-        let color = '';
-        if (letter === randomArray[index]) {
-          coloredLetters.add(letter);
-          color = '#23be23';
-        } else if (
-          randomArray.some((item, rIndex) => item === letter && guessWord[rIndex] !== letter && !coloredLetters.has(`${letter}${rIndex}`))
-        ) {
-          const matchingIndices = randomArray.reduce((indices, item, rIndex) => {
-            if (item === letter && !coloredLetters.has(`${letter}${rIndex}`)) {
-              indices.push(rIndex);
-            }
-            return indices;
-          }, [] as number[]);
-
-          if (matchingIndices.length > 0) {
-            const firstMatchingIndex = matchingIndices[0];
-            coloredLetters.add(`${letter}${firstMatchingIndex}`);
-            color = 'orange';
-          }
-        }
-        return color;
-      });
-
-      const isWin = updatedColor.every((color: string) => color === '#23be23');
-      if (isWin) {
-        const winColors = ['23be23', '23be23', '23be23', '23be23', '23be23'];
-        setColor(winColors);
-        setIsDisable(true);
-        handleWinInfo(true);
-      } else if (attemptCounter === 4) {
-        handleWinInfo(false);
-      }
-      setColor(updatedColor);
-    };
-
-    return (
-      <div className='guessWord'>
-        <form onSubmit={(event: any) => handleInputKeyPress(event)}>
-          {guessWord.map((letter, index) => (
-            <input
-              key={index}
-              ref={(ref) => (inputRefs.current[index] = ref)}
-              type='text'
-              className='letter'
-              id={darkMode ? 'letter' : ''}
-              value={letter}
-              onChange={(event) => handleInputChange(index, event)}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter') {
-                  event.preventDefault();
-                  handleInputKeyPress(event as any);
-                }
-              }}
-              onKeyUp={(event) => handleInputKeyUp(index, event)}
-              style={{ backgroundColor: color[index] }}
-              disabled={isDisable || disableOneLine}
-              minLength={1}
-              maxLength={1}
-              required
-            />
-          ))}
-        </form>
-      </div>
-    );
+  const handleInputKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    event.preventDefault();
+    setFocus(prev => prev + 1);
+    setDisableOneLine(true);
+    compareAndHighlightArrays();
+    handleUsedLetters(separateUsedLetters, guessWord, randomArray);
   };
+
+  const compareAndHighlightArrays = () => {
+    const updatedColor = guessWord.map((letter, index) => {
+      let color = '';
+      if (letter === randomArray[index]) {
+        coloredLetters.add(letter);
+        color = '#23be23';
+      } else if (
+        randomArray.some((item, rIndex) => item === letter && guessWord[rIndex] !== letter && !coloredLetters.has(`${letter}${rIndex}`))
+      ) {
+        const matchingIndices = randomArray.reduce((indices, item, rIndex) => {
+          if (item === letter && !coloredLetters.has(`${letter}${rIndex}`)) {
+            indices.push(rIndex);
+          }
+          return indices;
+        }, [] as number[]);
+
+        if (matchingIndices.length > 0) {
+          const firstMatchingIndex = matchingIndices[0];
+          coloredLetters.add(`${letter}${firstMatchingIndex}`);
+          color = 'orange';
+        }
+      }
+      return color;
+    });
+
+    const isWin = updatedColor.every((color: string) => color === '#23be23');
+    if (isWin) {
+      const winColors = ['23be23', '23be23', '23be23', '23be23', '23be23'];
+      setColor(winColors);
+      setIsDisable(true);
+      handleWinInfo(true);
+    } else if (attemptCounter === 4) {
+      handleWinInfo(false);
+    }
+    setColor(updatedColor);
+  };
+
+  return (
+    <div className='guessWord'>
+      <form onSubmit={(event: any) => handleInputKeyPress(event)}>
+        {guessWord.map((letter, index) => (
+          <input
+            key={index}
+            ref={(ref) => (inputRefs.current[index] = ref)}
+            type='text'
+            className='letter'
+            id={darkMode ? 'letter' : ''}
+            value={letter}
+            onChange={(event) => handleInputChange(index, event)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                event.preventDefault();
+                handleInputKeyPress(event as any);
+              }
+            }}
+            onKeyUp={(event) => handleInputKeyUp(index, event)}
+            style={{ backgroundColor: color[index] }}
+            disabled={isDisable || disableOneLine}
+            minLength={1}
+            maxLength={1}
+            required
+          />
+        ))}
+      </form>
+    </div>
+  );
+};
