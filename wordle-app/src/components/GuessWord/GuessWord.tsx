@@ -95,9 +95,7 @@ export const GuessWord: React.FC<GuessWordProps> = ({
       event.currentTarget.value = '';
       const prevInputRef = inputRefs.current[index - 1];
       prevInputRef?.focus();
-      if (prevInputRef) {
-        prevInputRef?.focus();
-      }
+
     } else if (!isBackspace && index < inputRefs.current.length - 1 && !isEmpty) {
       inputRefs.current[index + 1]?.focus();
     }
