@@ -92,14 +92,13 @@ export const GuessWord: React.FC<GuessWordProps> = ({
       prevInputRef?.focus();
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
       if (isMobile) {
-        setTimeout(() => {
-          inputRefs.current[index - 1]?.focus();
-        }, 0);
-      } else if (!isBackspace && index < inputRefs.current.length - 1 && !isEmpty) {
-        inputRefs.current[index + 1]?.focus();
+        inputRefs.current[index - 1]?.select();
       }
-    };
-  }
+    } else if (!isBackspace && index < inputRefs.current.length - 1 && !isEmpty) {
+      inputRefs.current[index + 1]?.focus();
+    }
+  };
+
 
   const handleInputKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     event.preventDefault();
