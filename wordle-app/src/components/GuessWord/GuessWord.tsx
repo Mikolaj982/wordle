@@ -153,13 +153,12 @@ export const GuessWord: React.FC<GuessWordProps> = ({
             value={letter}
             onChange={(event) => handleInputChange(index, event)}
             onKeyDown={(event) => {
-              handleInputKeyUp(index, event);
               if (event.key === 'Enter') {
                 event.preventDefault();
                 handleInputKeyPress(event as any);
               }
-            }
-            }
+            }}
+            onKeyUp={(event) => handleInputKeyUp(index, event)}
             style={{ backgroundColor: color[index] }}
             disabled={isDisable || disableOneLine}
             minLength={1}
