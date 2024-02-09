@@ -33,12 +33,6 @@ export const GuessWord: React.FC<GuessWordProps> = ({
   const { darkMode } = useContext<DarkModeContextType>(ThemeContext);
   const { handleUsedLetters } = useContext<UsedLettersType>(UsedLettersContext);
 
-  // console.log('inputRefs:', inputRefs);
-  // console.log('inputRefs.current.length:',inputRefs.current.length);
-  // console.log('color:',color);
-  console.log('attemptCounter:', attemptCounter);
-  console.log('randomWord:', randomArray)
-
   useEffect(() => {
     if (autoFocus) {
       inputRefs.current[0]?.focus();
