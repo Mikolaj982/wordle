@@ -5,8 +5,6 @@ Game inspired by Wordle.
 
 Technologies: HTML5, SCSS, ReactJS, TypeScript.
 
-:warning: **Attention:** There is currently an issue with the application's functionality on mobile devices. It is recommended to use the application on desktop computers or tablets.
-
 Demo: https://transcendent-cuchufli-744b09.netlify.app/
 
 --------------------------------------------------------------------------------------------------------------------
@@ -16,8 +14,6 @@ Demo: https://transcendent-cuchufli-744b09.netlify.app/
   Projekt 'Słownikowo' to responsywna strona internetowa, stworzona w oparciu o HTML5, SCSS, React oraz TypeScript. Celem projektu było odwzorowanie gry polegającej na odgadywaniu losowo wybranego hasła, mając do dyspozycji ograniczoną liczbę prób. Gra zazwyczaj skupia się na słowach pięcioliterowych. 
 
 Technologie: HTML5, SCSS, ReactJS, TypeScript.
-
-:warning: **Uwaga:** Obecnie istnieje problem z działaniem aplikacji na urządzeniach mobilnych. Zaleca się korzystanie z aplikacji na komputerach stacjonarnych.
 
 Demo: https://transcendent-cuchufli-744b09.netlify.app/
 
